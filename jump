@@ -121,9 +121,7 @@ class jump(object):
 
             self.screen.fill(BLACK)
             pygame.draw.circle(self.screen, WHITE, (player_x, player_y), 25, 0) #draw the player
-            #pygame.draw.rect(self.screen, RED, (player_x, player_y), 25, 25, 1) #testing purposes
             pygame.draw.rect(self.screen, RED, obstacle_one, 0) # draw the obstacle
-            #pygame.draw.circle(self.screen, RED, (obstacle_one_x, obstacle_one_y), 25, 0)
             pygame.draw.rect(self.screen, RED, obstacle_two, 0)
 
             if(not game):
