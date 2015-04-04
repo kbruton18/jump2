@@ -6,6 +6,7 @@ from pygame.locals import *
 RED = (255, 0, 0)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+display = True
 
 
 class jump(object):
@@ -58,9 +59,7 @@ class jump(object):
         while game:
             score += 0.123
 
-
-
-                     #loop through the events
+            #loop through the events
             for event in pygame.event.get():
                 if event.type==pygame.QUIT: #if user clicked close
                    # game = False
@@ -117,11 +116,11 @@ class jump(object):
             if playerRect.colliderect(obstacle_two):
                game = False
 
-
-            self.screen.fill(BLACK)
-            pygame.draw.circle(self.screen, WHITE, (player_x, player_y), 25, 0) #draw the player
-            pygame.draw.rect(self.screen, RED, obstacle_one, 0) # draw the obstacle
-            pygame.draw.rect(self.screen, RED, obstacle_two, 0)
+            if(display):
+                self.screen.fill(BLACK)
+                pygame.draw.circle(self.screen, WHITE, (player_x, player_y), 25, 0) #draw the player
+                pygame.draw.rect(self.screen, RED, obstacle_one, 0) # draw the obstacle
+                pygame.draw.rect(self.screen, RED, obstacle_two, 0)
 
             if(not game):
                 pygame.quit()
