@@ -58,9 +58,7 @@ class jump(object):
 
         while game:
             score += 0.123
-            playerRect = pygame.Rect(player_x - 23, player_y - 23, 45, 45)
-            obstacle_one = pygame.Rect(obstacle_one_x - 23, obstacle_one_y - 23, 45, 45)
-            obstacle_two = pygame.Rect(obstacle_two_x - 23, obstacle_two_y - 23, 45, 45)
+
 
 
                      #loop through the events
@@ -96,6 +94,11 @@ class jump(object):
                 cycle_finished = True
                 reached_top = False
 
+            # create rectangle around circle and move the rectangle with the circle
+            playerRect = pygame.Rect(player_x - 25, player_y - 25, 50, 50)
+            obstacle_one = pygame.Rect(obstacle_one_x - 23, obstacle_one_y - 23, 45, 45)
+            obstacle_two = pygame.Rect(obstacle_two_x - 23, obstacle_two_y - 23, 45, 45)
+
             # update obstacle x position
             obstacle_one_x -= obstacle_one_vx
             if(obstacle_one_x < 5):
@@ -109,11 +112,11 @@ class jump(object):
 
             # check if there is collision object 1
             if playerRect.colliderect(obstacle_one):
-                game = False
+               game = False
 
             # check if there is collision object 2
             if playerRect.colliderect(obstacle_two):
-                game = False
+               game = False
 
 
             self.screen.fill(BLACK)
