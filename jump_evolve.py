@@ -35,12 +35,12 @@ def game_function (ann, display=False):
     # obstacle 1
     obstacle_one_x = 800
     obstacle_one_y = 440
-    obstacle_one_vx = 7
+    obstacle_one_vx = 8
 
      # obstacle 2
     obstacle_two_x = obstacle_one_x + 300
     obstacle_two_y = 440
-    obstacle_two_vx = 7
+    obstacle_two_vx = 8
 
      # jump boolean
     cycle_finished = True
@@ -55,10 +55,10 @@ def game_function (ann, display=False):
 
     while game:
         score += 0.123
-        #min_rel_x = min(abs(player_x - obstacle_one_x), abs(player_x - obstacle_two_x)) / 800
-        #min_rel_y = min(abs(player_y - obstacle_one_y), abs(player_y - obstacle_two_y)) / 500
-        min_rel_x = (player_x - obstacle_one_x)/400
-        min_rel_y = (player_y - obstacle_one_y)/150
+        min_rel_x = min(abs(player_x - obstacle_one_x), abs(player_x - obstacle_two_x)) / 350
+        min_rel_y = min(abs(player_y - obstacle_one_y), abs(player_y - obstacle_two_y)) / 150
+        #min_rel_x = (player_x - obstacle_one_x)/350
+        #min_rel_y = (player_y - obstacle_one_y)/150
 
         sensors=[min_rel_x,min_rel_y,1.0]
         output = ann.process(sensors)
@@ -117,12 +117,12 @@ def game_function (ann, display=False):
             pygame.display.update()
             clock.tick(30)
 
-        if(not game):
-            pygame.quit()
+        #if(not game):
+         #   pygame.quit()
 
             #pygame.display.flip()
 
-        return score
+    return score
 
 
 
