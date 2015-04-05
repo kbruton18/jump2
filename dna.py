@@ -35,7 +35,7 @@ class dna:
             else:
                 child.weights[x] = other.weights[x]
         return child
-    
+
     def copyNeuron(self):
         copy = neuron()
         copy.weights = self.weights
@@ -56,7 +56,8 @@ class neuron:
         output = 0
         for x in range(0, dna.weights_size):
             output += sensors[x] * self.weights[x]
-        if output < (950.0/800.0):
+        #if output < (950.0/800.0):
+        if output < 1:
             #print 'jump'
             return 1.0
         else:
