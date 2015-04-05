@@ -5,8 +5,8 @@ from dna import dna
 
 
 population = []
-num_generations = 100
-population_size = 40
+num_generations = 50
+population_size = 20
 
 
 # append the individuals for the initial population
@@ -42,7 +42,7 @@ for x in range(0, num_generations):
 
     best = population[0]
 
-    print x, population[0].fitness, population[0].weights
+    print x, population[0].fitness
 
 
     # evaluate children
