@@ -3,12 +3,11 @@ import jumpmain
 
 class dna:
     weights_size = 3
+    #weights_size = 2
 
     def __init__(self):
-        self.weights=[]
-        for c in range(0, dna.weights_size):
-            #randomly assign weights in range -5.0 to 5.0
-            self.weights.append(random.uniform(-3.0, 3.0))
+        #randomly assign weights in range -5.0 to 5.0
+        self.weights = [random.uniform(-5.0, 5.0), random.uniform(-2.0, 2.0), random.uniform(-5.0, 5.0)]
 
     def mutate(self):
         # create a new dna
@@ -50,14 +49,14 @@ class dna:
 class neuron:
 
     def __init__(self):
-        self.weights = [random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0)]
-
+        self.weights = [random.uniform(-5.0, 5.0), random.uniform(-2.0, 2.0), random.uniform(-5.0, 5.0)]
+        #self.weights = [random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0)]
 
     def process(self, sensors):
         output = 0
         for x in range(0, dna.weights_size):
             output += sensors[x] * self.weights[x]
-        if output > 0:
+        if output < (950.0/800.0):
             #print 'jump'
             return 1.0
         else:
