@@ -75,4 +75,3 @@ print bestPop[1].fitness, '< fitness ', bestPop[1].weights
 ann = bestPop[0].copyNeuron()
 print game_function(ann, True)
 
-
