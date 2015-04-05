@@ -71,5 +71,3 @@ from jumpmain import game_function
 print best.fitness, '< fitness ', best.weights
 ann = best.copyNeuron()
 print game_function(ann, True)
-
-
