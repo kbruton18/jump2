@@ -53,14 +53,16 @@ def game_function (ann, display=False):
     score = 0
     game = True
 
-    while game:
+    while game and score < 300:
         score += 0.123
-        min_rel_x = min(abs(player_x - obstacle_one_x), abs(player_x - obstacle_two_x)) / 350
-        min_rel_y = min(abs(player_y - obstacle_one_y), abs(player_y - obstacle_two_y)) / 150
-        #min_rel_x = (player_x - obstacle_one_x)/350
-        #min_rel_y = (player_y - obstacle_one_y)/150
+        #min_rel_x = min(abs(player_x - obstacle_one_x), abs(player_x - obstacle_two_x)) / 350
+        #min_rel_y = min(abs(player_y - obstacle_one_y), abs(player_y - obstacle_two_y)) / 150
+        rel_x = (obstacle_one_x - player_x)/800.0
+        rel_y = (player_y - obstacle_one_y)/1.0
+        abs_x = obstacle_one_x / 800.0
 
-        sensors=[min_rel_x,min_rel_y,1.0]
+        #sensors = [rel_x, abs_x, 1.0]
+        sensors = [rel_x,abs_x, 1.0]
         output = ann.process(sensors)
 
         if output>0: #output positive, perform one jump
@@ -88,32 +90,33 @@ def game_function (ann, display=False):
          # create rectangle around circle and move the rectangle with the circle
         playerRect = pygame.Rect(player_x - 25, player_y - 25, 50, 50)
         obstacle_one = pygame.Rect(obstacle_one_x - 23, obstacle_one_y - 23, 45, 45)
-        obstacle_two = pygame.Rect(obstacle_two_x - 23, obstacle_two_y - 23, 45, 45)
+        #obstacle_two = pygame.Rect(obstacle_two_x - 23, obstacle_two_y - 23, 45, 45)
 
         # update obstacle x position
         obstacle_one_x -= obstacle_one_vx
         if(obstacle_one_x < 5):
-            obstacle_one_x = 780
+            #obstacle_one_x = 780
+            obstacle_one_x = random.randint(450, 780)
 
         # obstacle two, update position
-        obstacle_two_x -= obstacle_two_vx
-        if(obstacle_two_x < 5):
-            number = random.randint(400, 500)
-            obstacle_two_x = obstacle_one_x + number
+       # obstacle_two_x -= obstacle_two_vx
+       # if(obstacle_two_x < 5):
+         #   number = random.randint(400, 500)
+         #   obstacle_two_x = obstacle_one_x + number
 
         # check if there is collision object 1
         if playerRect.colliderect(obstacle_one):
             game = False
 
         # check if there is collision object 2
-        if playerRect.colliderect(obstacle_two):
-            game = False
+#        if playerRect.colliderect(obstacle_two):
+ #           game = False
 
         if display:
             screen.fill(BLACK)
             pygame.draw.circle(screen, WHITE, (player_x, player_y), 25, 0) #draw the player
             pygame.draw.rect(screen, RED, obstacle_one, 0) # draw the obstacle
-            pygame.draw.rect(screen, RED, obstacle_two, 0)
+            #pygame.draw.rect(screen, RED, obstacle_two, 0)
             pygame.display.update()
             clock.tick(30)
 
