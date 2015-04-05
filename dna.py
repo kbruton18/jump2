@@ -28,11 +28,12 @@ class dna:
     def crossover(self, other):
         # do crossover
         child = dna()
-        for x in range(0, dna.weights_size):
-            if random.random() > 0.5:
-                child.weights[x] = self.weights[x]
+        index_to_cross = random.randint(0, dna.weights_size-1)
+        for x in range(0,dna.weights_size):
+            if x<=index_to_cross:
+                child.weights[x]=self.weights[x]
             else:
-                child.weights[x] = other.weights[x]
+                child.weights[x]=other.weights[x]
         return child
 
     def copyNeuron(self):
