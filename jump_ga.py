@@ -5,16 +5,16 @@ from dna import dna
 
 
 population = []
-num_generations = 5
-population_size = 100
+num_generations = 100
+population_size = 40
+
 
 # append the individuals for the initial population
 for x in range(0, population_size):
 	population.append(dna())
 
 best = None
-#testing purposes only
-bestPop = []
+
 # iterates the number of generations
 for x in range(0, num_generations):
 	# iterates through the indvidiuals in population so that each goes through cross over
@@ -39,8 +39,8 @@ for x in range(0, num_generations):
 
 
     population.sort(key=lambda f:f.fitness, reverse=True)
+
     best = population[0]
-    bestPop.append(best)
 
     print x, population[0].fitness, population[0].weights
 
@@ -55,23 +55,21 @@ for x in range(0, num_generations):
     new_population = []
 
 
-    for x in range(0, 10):
+    for x in range(0, int(0.1 * population_size)):
         new_population.append(population[x])
         new_population.append(children_pop[x])
-    for x in range(0, 40):
+    for x in range(0, int(0.4 * population_size)):
         new_population.append(random.choice(children_pop))
         new_population.append(random.choice(population))
         #new_population.append(random.choice(children_pop))
 
     population = new_population
 
-print bestPop[0].fitness, '< fitness ', bestPop[0].weights
 # sort new population and keep track of the best player
-bestPop.sort(key=lambda f:f.fitness, reverse=True)
 
 from jumpmain import game_function
-print bestPop[0].fitness, '< fitness ', bestPop[0].weights
-print bestPop[1].fitness, '< fitness ', bestPop[1].weights
-ann = bestPop[0].copyNeuron()
+print best.fitness, '< fitness ', best.weights
+ann = best.copyNeuron()
 print game_function(ann, True)
+
 
