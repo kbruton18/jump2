@@ -129,5 +129,3 @@ if (__name__=='__main__'):
     print game_function(ann)
     pygame.quit()
     sys.exit()
-
-
